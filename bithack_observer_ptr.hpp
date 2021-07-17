@@ -1,7 +1,7 @@
 /*
  * @Author: Betty
  * @Date: 2021-07-17 19:41:10
- * @LastEditTime: 2021-07-18 01:37:29
+ * @LastEditTime: 2021-07-18 01:59:38
  * @Description: an enhanced C++ observer_ptr which can zip
  *               at most 16bits addtional information in 64bits
  *               program on x86_64 machine
@@ -26,10 +26,6 @@ namespace __bithack_base
         return false;
     #endif
     }
-
-    struct Empty
-    {
-    };
 
     template <typename T>
     struct addtional_info
