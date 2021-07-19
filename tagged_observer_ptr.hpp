@@ -1,22 +1,22 @@
 /*
  * @Author: Betty
  * @Date: 2021-07-17 19:41:10
- * @LastEditTime: 2021-07-18 01:59:38
+ * @LastEditTime: 2021-07-19 21:35:04
  * @Description: an enhanced C++ observer_ptr which can zip
  *               at most 16bits addtional information in 64bits
  *               program on x86_64 machine
- * @FilePath: \bithack_ptr\bithack_observer_ptr.hpp
+ * @FilePath: \tagged_ptr\tagged_observer_ptr.hpp
  */
-#ifndef __bithack_observer_ptr__
+#ifndef __tagged_observer_ptr__
 
-#define __bithack_observer_ptr__
+#define __tagged_observer_ptr__
 
 #include <type_traits>
 #include <utility>
 
-namespace bithack
+namespace tagged_ptr
 {
-namespace __bithack_base
+namespace __tagged_ptr_base
 {
     constexpr static bool __in_x86_64_mode() noexcept
     {
@@ -82,6 +82,9 @@ namespace __bithack_base
         }
 
     public:
+
+        static constexpr bool is_enable_zip = true;
+
         Info &info() noexcept
         {
             return *getInfoAddress();
@@ -161,7 +164,7 @@ namespace __bithack_base
         }
 
         template <typename... Args>
-        friend observer_ptr make_bithack_observer(Args &&...args)
+        friend observer_ptr make_tagged_observer(Args &&...args)
         {
             return observer_ptr{std::forward<Args>(args)...};
         }
@@ -214,6 +217,9 @@ namespace __bithack_base
         Info addtional_info;
         
     public:
+
+        static constexpr bool is_enable_zip = false;
+
         Info &info() noexcept
         {
             return addtional_info;
@@ -271,7 +277,7 @@ namespace __bithack_base
         }
 
         template <typename... Args>
-        friend observer_ptr make_bithack_observer(Args &&...args)
+        friend observer_ptr make_tagged_observer(Args &&...args)
         {
             return observer_ptr{std::forward<Args>(args)...};
         }
@@ -312,7 +318,7 @@ namespace __bithack_base
 }
 
 template <typename T, typename Info>
-    using observer_ptr = __bithack_base::observer_ptr<T, Info, __bithack_base::isEnableZip<Info>()>;
+    using observer_ptr = __tagged_ptr_base::observer_ptr<T, Info, __tagged_ptr_base::isEnableZip<Info>()>;
 }
 
 #endif

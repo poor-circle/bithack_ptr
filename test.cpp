@@ -1,16 +1,16 @@
 /*
  * @Author: your name
  * @Date: 2021-07-18 01:28:38
- * @LastEditTime: 2021-07-18 01:42:50
+ * @LastEditTime: 2021-07-19 21:36:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit#
- * @FilePath: \bithack_ptr\main.cpp
+ * @FilePath: \tagged_ptr\main.cpp
  */
-#include"bithack_observer_ptr.hpp"
+#include"tagged_observer_ptr.hpp"
 
 #include<iostream>
 
-using namespace bithack;
+using namespace tagged_ptr;
 
 int main(void)
 {
